@@ -75,7 +75,8 @@ class DB_API:
 
         return flagsForQuery
     
-    def getIntersectionInfo(self, source, target, flags=None):
+    # getIntersectionBySourceAndTarget
+    def getIntersectionBySourceAndTarget(self, source, target, flags=None):
         if not flags or flags == self.NONE:
             print('nada')
             return []
@@ -94,3 +95,69 @@ class DB_API:
         
         rows = self.cur.fetchall()
         return rows[0]
+    
+    # getIntersectionsBySourceId
+    def getIntersectionsBySourceId(self, source, flags=None):
+        if not flags or flags == self.NONE:
+            print('nada')
+            return []
+
+        flagsForQuery = self.__generateQueryByFlags(flags)
+        print(flagsForQuery)
+
+        query=f"SELECT {flagsForQuery} FROM \"hh_2po_4pgr\" WHERE source="+str(source)
+  
+        try:
+            self.cur.execute(query)
+        except Exception as e:
+            self.connection.commit()
+            print(e)
+            return []
+        
+        rows = self.cur.fetchall()
+        return rows
+    
+    # getIntersections
+    def getIntersections(self, flags=None):
+        if not flags or flags == self.NONE:
+            print('nada')
+            return []
+
+        flagsForQuery = self.__generateQueryByFlags(flags)
+        print(flagsForQuery)
+
+        query=f"SELECT {flagsForQuery} FROM \"hh_2po_4pgr\""
+  
+        try:
+            self.cur.execute(query)
+        except Exception as e:
+            self.connection.commit()
+            print(e)
+            return []
+        
+        rows = self.cur.fetchall()
+        return rows
+
+
+# Funcion que calcula el peso de una ruta
+# el cost se saca directamente de la base de datos, pero la función sería distancia/velocidad, solo que ya obtenemos el costo precalculado directamente
+def getWeight(source, target, db):
+    return db.getIntersectionBySourceAndTarget(source, target, db.COST)[0]
+
+# Funcion que calcula el peso de una ruta por hora
+def getWeightByHour(source, target, hour, db):
+    hourFactor=[0.5833333,1,6.8,12.6,18.4,24.2,30,26,22,18,14,10,9.25,8.5,7.75,7,12.75,18.5,24.25,30,25.16666667,20.333333,15.5,10.6666667]
+    weight = getWeight(source, target, db)
+    return weight * hourFactor[hour]
+    
+# Funcion que convierte una hora a formato HH:MM:SS
+def convertDecimalToHourMinute(time):
+    hours = int(time)
+    minutes = int((time*60) % 60)
+    seconds = int((time*3600) % 60)
+    milisecond = 0
+    if (hours==0) and (minutes==0) and (seconds ==0):
+        milisecond=(time*3600) % 60
+
+    timeFormat=[hours, minutes, seconds, milisecond]
+    return timeFormat
