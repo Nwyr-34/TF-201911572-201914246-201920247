@@ -130,3 +130,6 @@ dmypy.json
 
 ## Personal ignores
 ignores/
+antiguo/
+data/antiguo/
+src/antiguo/
