@@ -17,3 +17,5 @@ Luis Martin Canaval Sánchez
 
 ### **Sección:** 
 CC41
+
+> Video de exposicion: https://youtu.be/qil6ue9MIVw
