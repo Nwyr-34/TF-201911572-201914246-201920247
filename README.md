@@ -11,8 +11,7 @@ Luis Martin Canaval Sánchez
 ### **Integrantes:**
 
 - Diego Alonso Olivera Barrantes (u201914246) --> DiegoAlonso1
-- Elizabeth Adriana Nina Gutiérrez (u201920247) --> 
-ElizabethNina0
+- Elizabeth Adriana Nina Gutiérrez (u201920247) --> ElizabethNina0
 - Manuel Alonso Aranguri Vargas (u201911572) --> Nwyr-34
 <br/>
 
