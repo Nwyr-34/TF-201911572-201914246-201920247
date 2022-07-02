@@ -164,14 +164,12 @@ Para nuestro trabajo final, utilizamos el siguiente repositorio como base para l
 Dando como resultado las siguientes imagenes: 
 
 Dibujo del grafo antes
-
 <img src="./images/interfaz_before.png">
 
 Dibujo del grafo despues
-
 <img src="./images/interfaz_after.png">
 
 
 ## Enlace de video de exposición
 
-> Video de exposición: https://youtu.be/qil6ue9MIVw
+> Video de exposicion final: https://youtu.be/qil6ue9MIVw 
